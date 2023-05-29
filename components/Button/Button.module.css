@@ -1,0 +1,62 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition: all 0.3s ease;
+}
+.button:disabled {
+  cursor: auto;
+}
+.icon {
+  transition: all 0.3s ease;
+}
+
+.variant-primary {
+  width: 40px;
+  height: 40px;
+  background: var(--B);
+  border-radius: 8px;
+}
+.variant-primary:hover {
+  background: var(--W);
+}
+.variant-primary:hover > .icon-swap {
+  fill: var(--B);
+}
+.variant-primary:active {
+  background: var(--B2);
+}
+.variant-primary:active > .icon-swap {
+  fill: var(--W);
+}
+.variant-primary:disabled {
+  background: var(--G);
+}
+.variant-primary:disabled > .icon-swap {
+  fill: var(--G2);
+}
+.icon-swap {
+  height: 22px;
+  width: 14px;
+  fill: var(--W);
+}
+.variant-subtle {
+  background-color: transparent;
+}
+.variant-subtle:hover > .icon-refresh {
+  fill: var(--B);
+}
+.variant-subtle:active > .icon-refresh {
+  fill: var(--B2);
+}
+.variant-subtle:disabled > .icon-refresh {
+  fill: var(--G);
+}
+.icon-refresh {
+  width: 16px;
+  height: 16px;
+  fill: var(--W);
+}
