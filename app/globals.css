@@ -1,11 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap");
+
 :root {
+  --PRIMARY-FONT: "Space Grotesk", sans-serif;
   --BG: #11171f;
   --B: #476cff;
   --B2: #323efb;
+  --B3: #10161d;
+  --B4: #1f2934;
+  --B5: #10161d;
   --W: white;
   --W2: #dfe1e6;
+  --W3: #b4bac4;
   --G: #44526c;
   --G2: #7c8698;
+  --G3: #606c82;
 }
 
 * {
@@ -19,6 +27,7 @@ body {
   max-width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: var(--PRIMARY-FONT);
 }
 body {
   background-color: var(--BG);
@@ -53,4 +62,6 @@ body::after {
   max-width: 1366px;
   width: 100%;
   margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
 }

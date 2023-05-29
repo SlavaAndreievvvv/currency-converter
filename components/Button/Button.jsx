@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 import { ICON_TYPES, Icon } from "../Icon";
 import styles from "./Button.module.css";
 
-export const Button = ({ className, variant, icon, onClick, disabled }) => {
+export const Button = ({
+  className,
+  variant = "primary",
+  icon = "swap",
+  onClick,
+  disabled,
+}) => {
   return (
     <button
       onClick={onClick}
@@ -16,9 +22,10 @@ export const Button = ({ className, variant, icon, onClick, disabled }) => {
   );
 };
 
-Button.PropTypes = {
+Button.propTypes = {
+  disabled: PropTypes.bool,
   className: PropTypes.string,
   onClick: PropTypes.func,
-  variant: PropTypes.oneOf(["primary", "subtle"]).isRequired,
-  icon: PropTypes.oneOf(ICON_TYPES).isRequired,
+  variant: PropTypes.oneOf(["primary", "subtle"]),
+  icon: PropTypes.oneOf(ICON_TYPES),
 };

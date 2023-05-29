@@ -1,6 +1,11 @@
 import styles from "./page.module.css";
-import { Button } from "@/components/Button";
+
+import { Converter } from "@/components/Converter";
 
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <Converter />
+    </>
+  );
 }
