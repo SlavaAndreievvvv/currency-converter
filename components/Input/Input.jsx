@@ -12,11 +12,12 @@ export const Input = ({
 }) => {
   return (
     <input
+      inputMode="numeric"
       className={clsx(styles.input, className)}
       placeholder={placeholder}
       disabled={disabled}
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={onChange}
     />
   );
 };

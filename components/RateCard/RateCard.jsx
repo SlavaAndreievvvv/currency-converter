@@ -3,13 +3,31 @@ import PropTypes from "prop-types";
 
 import styles from "./RateCard.module.css";
 import { Button } from "../Button";
+import { Loader } from "../Loader";
 
-export const RateCard = ({ className, onClick }) => {
+export const RateCard = ({
+  className,
+  onClick,
+  rate,
+  amount,
+  base,
+  convertTo,
+  loader,
+}) => {
   return (
     <div className={clsx(styles.card, className)}>
-      <span className={styles.text}>1 BTC</span>
-      <span className={styles.equals}>=</span>
-      <span className={clsx(styles.text, styles.grow)}>973,091.42 UAH</span>
+      {!loader ? (
+        <>
+          <span className={styles.text}>
+            {amount} {base}
+          </span>
+          <span className={styles.equals}>=</span>
+          <span className={styles.text}>{rate}</span>
+          <span className={clsx(styles.text, styles.grow)}>{convertTo}</span>
+        </>
+      ) : (
+        <Loader className={styles.grow} />
+      )}
       <Button
         variant="subtle"
         icon="refresh"
@@ -23,4 +41,8 @@ export const RateCard = ({ className, onClick }) => {
 RateCard.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
+  // rate: PropTypes.string,
+  // amount: PropTypes.string,
+  base: PropTypes.string,
+  convertTo: PropTypes.string,
 };

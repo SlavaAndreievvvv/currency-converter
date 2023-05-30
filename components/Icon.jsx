@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const ICON_TYPES = ["logo", "refresh", "swap", "bitcoin", "ua-flag"];
+export const ICON_TYPES = ["logo", "refresh", "swap", "BTC", "UAH"];
 
 export const Icon = ({ name, className }) => {
   switch (name) {
@@ -74,7 +74,7 @@ export const Icon = ({ name, className }) => {
           />
         </svg>
       );
-    case "bitcoin":
+    case "BTC":
       return (
         <svg
           className={className}
@@ -90,7 +90,7 @@ export const Icon = ({ name, className }) => {
           />
         </svg>
       );
-    case "ua-flag":
+    case "UAH":
       return (
         <svg
           className={className}
