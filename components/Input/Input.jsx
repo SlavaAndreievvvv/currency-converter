@@ -37,6 +37,5 @@ Input.propTypes = {
   className: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  ref: PropTypes.any,
   onBlur: PropTypes.func,
 };

@@ -16,3 +16,15 @@
   left: 50%;
   transform: translate(-50%, -145%);
 }
+.animation {
+  animation: fadeIn 2.5s ease 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

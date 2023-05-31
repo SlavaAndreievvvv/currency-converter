@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import clsx from "clsx";
-import PropTypes from "prop-types";
 import numeral from "numeral";
+import clsx from "clsx";
 
 import { SwapCard } from "../SwapCard";
 import { Button } from "../Button";
 import { RateCard } from "../RateCard";
+import { getCurrencyPrice } from "@/api/getCurrencyPrice";
 
 import styles from "./Converter.module.css";
-import { getCurrencyPrice } from "../../api/getCurrencyPrice";
 
 export const Converter = ({ price }) => {
   const [base, setBase] = useState("BTC");
@@ -118,11 +117,13 @@ export const Converter = ({ price }) => {
     }
   }, [base, convertTo]);
 
+  const rateFormat = rate >= 1 ? "0,00.0" : "0,00.0000000";
+
   return (
     <div className={styles.container}>
       <SwapCard
         icon={base}
-        className={styles.card}
+        className={clsx(styles.card, styles.animation)}
         value={baseAmount}
         onChange={handleBaseInput}
         base={base}
@@ -132,17 +133,20 @@ export const Converter = ({ price }) => {
       <SwapCard
         icon={convertTo}
         convertTo={convertTo}
-        className={styles.card}
+        className={clsx(styles.card, styles.animation)}
         value={convertToAmount}
         onChange={handleConvertToInput}
         loader={convertToLoading}
         isBuy={!isBuy}
       />
-      <Button className={styles.button} onClick={handleSwap} />
+      <Button
+        className={clsx(styles.button, styles.animation)}
+        onClick={handleSwap}
+      />
 
       <RateCard
-        className={styles.rate}
-        rate={rate}
+        className={clsx(styles.rate, styles.animation)}
+        rate={numeral(rate).format(rateFormat)}
         amount={1}
         base={base}
         convertTo={convertTo}
