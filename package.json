@@ -6,7 +6,9 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sb": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "clsx": "^1.2.1",
@@ -16,6 +18,17 @@
     "numeral": "^2.0.6",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-number-format": "^5.2.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
+    "@storybook/blocks": "^7.0.18",
+    "@storybook/nextjs": "^7.0.18",
+    "@storybook/react": "^7.0.18",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "storybook": "^7.0.18"
   }
 }

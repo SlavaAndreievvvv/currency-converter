@@ -22,11 +22,11 @@ export const RateCard = ({
             {amount} {base}
           </span>
           <span className={styles.equals}>=</span>
-          <span className={styles.text}>{rate}</span>
+          <span className={clsx(styles.text, styles.rate)}>{rate}</span>
           <span className={clsx(styles.text, styles.grow)}>{convertTo}</span>
         </>
       ) : (
-        <Loader className={styles.grow} />
+        <Loader className={styles.growLoad} />
       )}
       <Button
         variant="subtle"

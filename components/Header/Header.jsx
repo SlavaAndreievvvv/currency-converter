@@ -1,4 +1,4 @@
-import { Icon } from "@/components/Icon";
+import { Icon } from "../Icon";
 import Link from "next/link";
 import styles from "./Header.module.css";
 

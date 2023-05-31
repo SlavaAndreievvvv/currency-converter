@@ -9,7 +9,10 @@
   padding: 16px 32px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
 }
 .card:hover {
   background: var(--B4);
@@ -18,7 +21,9 @@
   background: var(--B5);
 }
 .head {
-  margin-bottom: 16px;
+  height: 0;
+  width: 100%;
+  position: relative;
 }
 .body {
   display: flex;
@@ -29,6 +34,9 @@
   font-size: 12px;
   line-height: 135%;
   text-transform: uppercase;
+  position: absolute;
+  top: -32px;
+  left: 0px;
 }
 .value {
   font-weight: 500;
@@ -39,12 +47,12 @@
   display: flex;
   flex-grow: 1;
 }
-.input {
-  /* display: flex;
-  flex-grow: 1; */
-}
+
 .icon {
   width: 24px;
   height: 24px;
   margin-right: 8px;
+}
+.focused {
+  border: 1px solid var(--B);
 }

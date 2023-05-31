@@ -6,10 +6,9 @@ import numeral from "numeral";
 import { SwapCard } from "../SwapCard";
 import { Button } from "../Button";
 import { RateCard } from "../RateCard";
-import { formattedCurrencyConverter } from "@/utils/CurrencyConverter";
 
 import styles from "./Converter.module.css";
-import { getCurrencyPrice } from "@/api/getCurrencyPrice";
+import { getCurrencyPrice } from "../../api/getCurrencyPrice";
 
 export const Converter = ({ price }) => {
   const [base, setBase] = useState("BTC");
@@ -28,14 +27,14 @@ export const Converter = ({ price }) => {
       calculate();
     }
     swapCalledRef.current = false;
-  }, [baseAmount, convertTo]);
+  }, [baseAmount, convertTo, rate]);
 
   useEffect(() => {
     if (!swapCalledRef.current) {
       calculateReverse();
     }
     swapCalledRef.current = false;
-  }, [convertToAmount, convertTo]);
+  }, [convertToAmount, convertTo, rate]);
 
   const calculate = () => {
     const convertedAmount = parseFloat(baseAmount);
@@ -102,14 +101,22 @@ export const Converter = ({ price }) => {
     setRateLoading(true);
     try {
       const newPrice = await getCurrencyPrice();
-      setRate(newPrice);
+      let newRate;
+
+      if (base === "BTC" && convertTo === "UAH") {
+        newRate = newPrice;
+      } else if (base === "UAH" && convertTo === "BTC") {
+        newRate = 1 / newPrice;
+      }
+
+      setRate(newRate);
       setTimeout(() => {
         setRateLoading(false);
       }, 1000);
     } catch (error) {
       console.error("Failed to refresh currency rate:", error);
     }
-  }, []);
+  }, [base, convertTo]);
 
   return (
     <div className={styles.container}>
@@ -135,7 +142,7 @@ export const Converter = ({ price }) => {
 
       <RateCard
         className={styles.rate}
-        rate={formattedCurrencyConverter(rate)}
+        rate={rate}
         amount={1}
         base={base}
         convertTo={convertTo}

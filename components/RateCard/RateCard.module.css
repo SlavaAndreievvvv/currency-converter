@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   align-items: center;
   background-color: var(--G);
@@ -14,6 +15,11 @@
 }
 .grow {
   display: flex;
+  flex-grow: 1;
+}
+.growLoad {
+  display: flex;
+  justify-content: flex-start;
   flex-grow: 1;
 }
 .text {

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import PropTypes from "prop-types";
 
-import { ICON_TYPES, Icon } from "../Icon";
+import { ICON_TYPES, Icon } from "../Icon/Icon";
 import styles from "./Button.module.css";
 
 export const Button = ({

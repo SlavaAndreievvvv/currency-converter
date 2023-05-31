@@ -2,14 +2,25 @@ import PropTypes from "prop-types";
 
 export const ICON_TYPES = ["logo", "refresh", "swap", "BTC", "UAH"];
 
-export const Icon = ({ name, className }) => {
+export const Icon = ({ name, size, color, className }) => {
+  const props = {
+    className,
+  };
+  if (size) {
+    props.width = size;
+    props.height = size;
+  }
+  if (color) {
+    props.fill = color;
+  }
   switch (name) {
     default:
       return null;
     case "logo":
       return (
         <svg
-          className={className}
+          // className={className}
+          {...props}
           width="95"
           height="20"
           viewBox="0 0 95 20"
@@ -53,7 +64,8 @@ export const Icon = ({ name, className }) => {
     case "refresh":
       return (
         <svg
-          className={className}
+          // className={className}
+          {...props}
           viewBox="0 0 16 16"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -63,7 +75,8 @@ export const Icon = ({ name, className }) => {
     case "swap":
       return (
         <svg
-          className={className}
+          // className={className}
+          {...props}
           viewBox="0 0 16 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -77,7 +90,8 @@ export const Icon = ({ name, className }) => {
     case "BTC":
       return (
         <svg
-          className={className}
+          // className={className}
+          {...props}
           viewBox="0 -0.5 34 34"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +107,8 @@ export const Icon = ({ name, className }) => {
     case "UAH":
       return (
         <svg
-          className={className}
+          // className={className}
+          {...props}
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -111,4 +126,6 @@ export const Icon = ({ name, className }) => {
 Icon.propTypes = {
   className: PropTypes.string,
   name: PropTypes.oneOf(ICON_TYPES).isRequired,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  color: PropTypes.string,
 };
