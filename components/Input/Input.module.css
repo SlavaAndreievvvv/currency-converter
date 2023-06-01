@@ -26,7 +26,7 @@
 .input:active {
   color: var(--W3);
 }
-input:disabled {
+.input:disabled {
   color: var(--G);
   cursor: auto;
 }

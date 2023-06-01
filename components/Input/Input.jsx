@@ -31,6 +31,8 @@ export const Input = forwardRef(
   }
 );
 
+Input.displayName = "Input";
+
 Input.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
