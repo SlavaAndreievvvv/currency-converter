@@ -41,8 +41,8 @@ export const RateCard = ({
 RateCard.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
-  // rate: PropTypes.string,
-  // amount: PropTypes.string,
+  rate: PropTypes.string,
+  amount: PropTypes.number,
   base: PropTypes.string,
   convertTo: PropTypes.string,
 };

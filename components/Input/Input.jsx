@@ -19,7 +19,6 @@ export const Input = forwardRef(
     return (
       <input
         ref={ref}
-        type="text"
         className={clsx(styles.input, className)}
         placeholder={placeholder}
         disabled={disabled}
