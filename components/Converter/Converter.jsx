@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { SwapCard } from "../SwapCard";
 import { Button } from "../Button";
 import { RateCard } from "../RateCard";
-import { getCurrencyPrice } from "@/api/getCurrencyPrice";
+import { getCurrencyPrice } from "../../api/getCurrencyPrice";
 
 import styles from "./Converter.module.css";
 
@@ -71,11 +71,11 @@ export const Converter = ({ price }) => {
     setConvertToAmount(tempBaseAmount);
     setBaseAmount(tempConvertToAmount);
     setRateLoading(true);
+    setRate(1 / rate);
     setTimeout(() => {
-      setRate(1 / rate);
       setRateLoading(false);
-      setIsBuy(!isBuy);
     }, 1000);
+    setIsBuy(!isBuy);
   };
 
   const handleBaseInput = (e) => {
