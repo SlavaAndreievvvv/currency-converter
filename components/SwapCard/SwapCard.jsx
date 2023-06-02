@@ -59,7 +59,7 @@ export const SwapCard = ({
 SwapCard.propTypes = {
   onChange: PropTypes.func,
   className: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   base: PropTypes.string,
   icon: PropTypes.string,
   isBuy: PropTypes.bool,
