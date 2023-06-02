@@ -6,7 +6,7 @@ import { SwapCard } from "../SwapCard";
 import { Button } from "../Button";
 import { RateCard } from "../RateCard";
 import { getCurrencyPrice } from "../../api/getCurrencyPrice";
-import { useLoading } from "../..//utils/hooks/useLoading";
+import { useLoading } from "../../utils/hooks/useLoading";
 
 import styles from "./Converter.module.css";
 
@@ -79,6 +79,7 @@ export const Converter = ({ price }) => {
       stopRateLoading();
       setIsBuy(!isBuy);
     }, 1000);
+    setIsBuy(!isBuy);
   };
 
   const handleBaseInput = (e) => {
