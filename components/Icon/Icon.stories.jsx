@@ -1,4 +1,5 @@
 import { Icon, ICON_TYPES } from "./Icon";
+import "../../app/globals.css";
 
 export default {
   title: "components/Icon",

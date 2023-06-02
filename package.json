@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "sb": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_33d516f7a37ac47"
   },
   "dependencies": {
     "clsx": "^1.2.1",
@@ -29,6 +30,9 @@
     "@storybook/nextjs": "^7.0.18",
     "@storybook/react": "^7.0.18",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "chromatic": "^6.18.0",
     "storybook": "^7.0.18"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "currency-converter@0.1.0"
 }

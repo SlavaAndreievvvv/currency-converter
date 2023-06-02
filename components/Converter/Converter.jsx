@@ -6,6 +6,7 @@ import { SwapCard } from "../SwapCard";
 import { Button } from "../Button";
 import { RateCard } from "../RateCard";
 import { getCurrencyPrice } from "../../api/getCurrencyPrice";
+import { useLoading } from "../../utils/hooks/useLoading";
 
 import styles from "./Converter.module.css";
 
@@ -16,10 +17,12 @@ export const Converter = ({ price }) => {
   const [convertToAmount, setConvertToAmount] = useState("");
   const swapCalledRef = useRef(false);
   const [rate, setRate] = useState(price);
-  const [baseLoading, setBaseLoading] = useState(false);
-  const [convertToLoading, setConvertToLoading] = useState(false);
-  const [rateLoading, setRateLoading] = useState(false);
   const [isBuy, setIsBuy] = useState(true);
+
+  const [baseLoading, startBaseLoading, stopBaseLoading] = useLoading(false);
+  const [convertToLoading, startConvertToLoading, stopConvertToLoading] =
+    useLoading(false);
+  const [rateLoading, startRateLoading, stopRateLoading] = useLoading(false);
 
   useEffect(() => {
     if (!swapCalledRef.current) {
@@ -70,10 +73,11 @@ export const Converter = ({ price }) => {
     setConvertTo(base);
     setConvertToAmount(tempBaseAmount);
     setBaseAmount(tempConvertToAmount);
-    setRateLoading(true);
+    startRateLoading();
     setRate(1 / rate);
     setTimeout(() => {
-      setRateLoading(false);
+      stopRateLoading();
+      setIsBuy(!isBuy);
     }, 1000);
     setIsBuy(!isBuy);
   };
@@ -81,23 +85,23 @@ export const Converter = ({ price }) => {
   const handleBaseInput = (e) => {
     const value = e.target.value;
     setBaseAmount(value);
-    setConvertToLoading(true);
+    startConvertToLoading();
     setTimeout(() => {
-      setConvertToLoading(false);
+      stopConvertToLoading();
     }, 1000);
   };
 
   const handleConvertToInput = (e) => {
     const value = e.target.value;
     setConvertToAmount(value);
-    setBaseLoading(true);
+    startBaseLoading();
     setTimeout(() => {
-      setBaseLoading(false);
+      stopBaseLoading();
     }, 1000);
   };
 
   const handleRefresh = useCallback(async () => {
-    setRateLoading(true);
+    startRateLoading();
     try {
       const newPrice = await getCurrencyPrice();
       let newRate;
@@ -110,7 +114,7 @@ export const Converter = ({ price }) => {
 
       setRate(newRate);
       setTimeout(() => {
-        setRateLoading(false);
+        stopRateLoading();
       }, 1000);
     } catch (error) {
       console.error("Failed to refresh currency rate:", error);

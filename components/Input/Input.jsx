@@ -18,8 +18,9 @@ export const Input = forwardRef(
   ) => {
     return (
       <input
+        type="number"
+        inputMode="decimal"
         ref={ref}
-        type="text"
         className={clsx(styles.input, className)}
         placeholder={placeholder}
         disabled={disabled}
