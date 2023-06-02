@@ -38,7 +38,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   className: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   onBlur: PropTypes.func,
 };
