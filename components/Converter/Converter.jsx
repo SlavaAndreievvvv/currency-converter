@@ -42,9 +42,9 @@ export const Converter = ({ price }) => {
       return;
     }
     if (base === "BTC" && convertTo === "UAH") {
-      setConvertToAmount((convertedAmount * price).toString());
+      setConvertToAmount(convertedAmount * price);
     } else if (base === "UAH" && convertTo === "BTC") {
-      setConvertToAmount((convertedAmount / price).toString());
+      setConvertToAmount(convertedAmount / price);
     }
   };
 
@@ -56,9 +56,9 @@ export const Converter = ({ price }) => {
     }
 
     if (base === "BTC" && convertTo === "UAH") {
-      setBaseAmount((convertedAmount / price).toString());
+      setBaseAmount(convertedAmount / price);
     } else if (base === "UAH" && convertTo === "BTC") {
-      setBaseAmount((convertedAmount * price).toString());
+      setBaseAmount(convertedAmount * price);
     }
   };
 
