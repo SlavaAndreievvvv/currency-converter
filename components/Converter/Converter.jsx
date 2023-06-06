@@ -15,14 +15,14 @@ export const Converter = ({ price }) => {
   const [baseAmount, setBaseAmount] = useState("");
   const [convertTo, setConvertTo] = useState("UAH");
   const [convertToAmount, setConvertToAmount] = useState("");
-  const swapCalledRef = useRef(false);
   const [rate, setRate] = useState(price);
-  const [isBuy, setIsBuy] = useState(true);
 
   const [baseLoading, startBaseLoading, stopBaseLoading] = useLoading(false);
   const [convertToLoading, startConvertToLoading, stopConvertToLoading] =
     useLoading(false);
   const [rateLoading, startRateLoading, stopRateLoading] = useLoading(false);
+
+  const swapCalledRef = useRef(false);
 
   useEffect(() => {
     if (!swapCalledRef.current) {
@@ -44,9 +44,9 @@ export const Converter = ({ price }) => {
       setConvertToAmount("");
       return;
     }
-    if (base === "BTC" && convertTo === "UAH") {
+    if (base === "BTC") {
       setConvertToAmount(convertedAmount * price);
-    } else if (base === "UAH" && convertTo === "BTC") {
+    } else {
       setConvertToAmount(convertedAmount / price);
     }
   };
@@ -58,28 +58,20 @@ export const Converter = ({ price }) => {
       return;
     }
 
-    if (base === "BTC" && convertTo === "UAH") {
-      setBaseAmount(convertedAmount / price);
-    } else if (base === "UAH" && convertTo === "BTC") {
+    if (base !== "BTC") {
       setBaseAmount(convertedAmount * price);
+    } else {
+      setBaseAmount(convertedAmount / price);
     }
   };
 
   const handleSwap = () => {
     swapCalledRef.current = true;
-    const tempBaseAmount = baseAmount;
-    const tempConvertToAmount = convertToAmount;
     setBase(convertTo);
     setConvertTo(base);
-    setConvertToAmount(tempBaseAmount);
-    setBaseAmount(tempConvertToAmount);
-    startRateLoading();
+    setConvertToAmount(baseAmount);
+    setBaseAmount(convertToAmount);
     setRate(1 / rate);
-    setTimeout(() => {
-      stopRateLoading();
-      setIsBuy(!isBuy);
-    }, 1000);
-    setIsBuy(!isBuy);
   };
 
   const handleBaseInput = (e) => {
@@ -101,27 +93,23 @@ export const Converter = ({ price }) => {
   };
 
   const handleRefresh = useCallback(async () => {
-    startRateLoading();
     try {
       const newPrice = await getCurrencyPrice();
       let newRate;
 
-      if (base === "BTC" && convertTo === "UAH") {
+      if (base === "BTC") {
         newRate = newPrice;
-      } else if (base === "UAH" && convertTo === "BTC") {
+      } else {
         newRate = 1 / newPrice;
       }
 
       setRate(newRate);
-      setTimeout(() => {
-        stopRateLoading();
-      }, 1000);
     } catch (error) {
       console.error("Failed to refresh currency rate:", error);
     }
   }, [base, convertTo]);
 
-  const rateFormat = rate >= 1 ? "0,00.0" : "0,00.0000000";
+  const rateFormat = numeral(rate).format("0,0.[00000000]");
 
   return (
     <div className={styles.container}>
@@ -132,7 +120,7 @@ export const Converter = ({ price }) => {
         onChange={handleBaseInput}
         base={base}
         loader={baseLoading}
-        isBuy={isBuy}
+        label="You bay"
       />
       <SwapCard
         icon={convertTo}
@@ -141,7 +129,7 @@ export const Converter = ({ price }) => {
         value={convertToAmount}
         onChange={handleConvertToInput}
         loader={convertToLoading}
-        isBuy={!isBuy}
+        label="You sell"
       />
       <Button
         className={clsx(styles.button, styles.animation)}
@@ -150,7 +138,7 @@ export const Converter = ({ price }) => {
 
       <RateCard
         className={clsx(styles.rate, styles.animation)}
-        rate={numeral(rate).format(rateFormat)}
+        rate={rateFormat}
         amount={1}
         base={base}
         convertTo={convertTo}

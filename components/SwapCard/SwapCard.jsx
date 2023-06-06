@@ -15,7 +15,7 @@ export const SwapCard = ({
   base,
   convertTo,
   loader,
-  isBuy,
+  label,
 }) => {
   const inputRef = useRef(null);
   const [focused, setFocused] = useState(false);
@@ -35,11 +35,11 @@ export const SwapCard = ({
       onClick={handleCardClick}
     >
       <div className={styles.head}>
-        <span className={styles.text}>{isBuy ? "You buy" : "You sell"}</span>
+        <span className={styles.text}>{label}</span>
       </div>
       <div className={styles.body}>
         <Icon name={icon} className={styles.icon} />
-        <span className={styles.value}>{base ?? convertTo}</span>
+        <span className={styles.value}>{base || convertTo}</span>
         {loader ? (
           <Loader />
         ) : (
@@ -62,5 +62,5 @@ SwapCard.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   base: PropTypes.string,
   icon: PropTypes.string,
-  isBuy: PropTypes.bool,
+  label: PropTypes.string,
 };

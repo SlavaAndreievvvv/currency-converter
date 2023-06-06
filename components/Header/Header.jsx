@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <Link href="/">
+      <Link aria-label="logo" href="/">
         <Icon name="logo" />
       </Link>
     </header>

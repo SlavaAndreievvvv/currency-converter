@@ -16,6 +16,7 @@ export const Button = ({
       onClick={onClick}
       className={clsx(styles.button, className, styles[`variant-${variant}`])}
       disabled={disabled}
+      aria-label="button"
     >
       <Icon name={icon} className={clsx(styles.icon, styles[`icon-${icon}`])} />
     </button>

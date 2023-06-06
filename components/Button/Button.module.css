@@ -7,9 +7,15 @@
   border: none;
   transition: all 0.3s ease;
 }
+
+.button:focus-within {
+  box-shadow: 0 0 0 1px var(--W);
+}
+
 .button:disabled {
   cursor: auto;
 }
+
 .icon {
   transition: all 0.3s ease;
 }
@@ -28,6 +34,7 @@
 }
 .variant-primary:active {
   background: var(--B2);
+  box-shadow: none;
 }
 .variant-primary:active > .icon-swap {
   fill: var(--W);
@@ -45,6 +52,9 @@
 }
 .variant-subtle {
   background-color: transparent;
+}
+.variant-subtle:active {
+  box-shadow: none;
 }
 .variant-subtle:hover > .icon-refresh {
   fill: var(--B);

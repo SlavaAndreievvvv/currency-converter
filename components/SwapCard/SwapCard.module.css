@@ -20,6 +20,10 @@
 .card:active {
   background: var(--B5);
 }
+.card:focus,
+.card:focus-within {
+  border: 1px solid var(--B);
+}
 .head {
   height: 0;
   width: 100%;
@@ -53,6 +57,7 @@
   height: 24px;
   margin-right: 8px;
 }
+
 .focused {
   border: 1px solid var(--B);
 }
