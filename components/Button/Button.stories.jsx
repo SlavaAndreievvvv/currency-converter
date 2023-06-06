@@ -1,12 +1,13 @@
 import "../../app/globals.css";
 import { Button } from "./Button";
+import { ICON_TYPES } from "../Icon";
 
 export default {
   title: "components/Button",
   component: Button,
   argTypes: {
     icon: {
-      options: ["swap", "refresh"],
+      options: ICON_TYPES,
       control: { type: "select" },
     },
   },
